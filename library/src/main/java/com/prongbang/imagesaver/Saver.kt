@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.util.Base64
+import android.util.Log
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -133,7 +134,11 @@ class SaverImpl(
 		val outStream: FileOutputStream
 		try {
 			outStream = FileOutputStream(file)
-			compressBitmap(bitmap, quality, outStream)
+			when (fileExtension) {
+				ImageExtension.PNG.value -> bitmap.compress(Bitmap.CompressFormat.PNG, quality, outStream)
+				ImageExtension.JPEG.value -> bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outStream)
+				ImageExtension.WEBP.value -> bitmap.compress(Bitmap.CompressFormat.WEBP, quality, outStream)
+			}
 			outStream.flush()
 			outStream.close()
 		} catch (e: FileNotFoundException) {
@@ -142,14 +147,6 @@ class SaverImpl(
 			listener?.onFailure(e)
 		} finally {
 			listener?.onSuccess(file)
-		}
-	}
-
-	private fun compressBitmap(bitmap: Bitmap, quality: Int, outStream: OutputStream) {
-		when (fileExtension) {
-			ImageExtension.PNG.value -> bitmap.compress(Bitmap.CompressFormat.PNG, quality, outStream)
-			ImageExtension.JPEG.value -> bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outStream)
-			ImageExtension.WEBP.value -> bitmap.compress(Bitmap.CompressFormat.WEBP, quality, outStream)
 		}
 	}
 

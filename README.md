@@ -14,7 +14,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation 'com.github.prongbang:android-image-saver:1.0.0'
+    implementation 'com.github.prongbang:android-image-saver:1.0.1'
 }
 ```
 
@@ -30,7 +30,7 @@ dependencies {
 - Save bitmap to file
 
 ```kotlin
-ImageSaver.to(this)
+ImageSaver.with(this)
     .directory("android-image-saver")
     .filename("test")
     .extension(ImageExtension.PNG)
@@ -44,7 +44,7 @@ ImageSaver.to(this)
 - Save drawable to file
 
 ```kotlin
-ImageSaver.to(this)
+ImageSaver.with(this)
     .directory("android-image-saver")
     .filename("test")
     .extension(ImageExtension.PNG)
@@ -58,7 +58,7 @@ ImageSaver.to(this)
 - Save base64 to file
 
 ```kotlin
-ImageSaver.to(this)
+ImageSaver.with(this)
     .directory("android-image-saver")
     .filename("test")
     .extension(ImageExtension.PNG)

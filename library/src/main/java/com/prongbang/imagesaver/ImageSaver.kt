@@ -5,7 +5,7 @@ import java.io.File
 
 object ImageSaver {
 
-	fun to(context: Context): Saver =
+	fun with(context: Context): Saver =
 			SaverImpl(
 					context,
 					RuntimePermissions(context),
@@ -13,8 +13,6 @@ object ImageSaver {
 					BitmapUtilityImpl(),
 					EncoderImpl()
 			)
-
-	fun convert(): Converter = ConverterImpl()
 
 	interface Listener {
 		fun onSuccess(file: File)
