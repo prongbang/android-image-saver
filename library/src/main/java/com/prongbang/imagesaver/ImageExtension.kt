@@ -1,6 +1,6 @@
 package com.prongbang.imagesaver
 
-enum class ImageExt(v: String) {
+enum class ImageExtension(v: String) {
 	PNG(".png"),
 	JPEG(".jpeg"),
 	WEBP(".webp");

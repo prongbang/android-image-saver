@@ -14,7 +14,7 @@ interface Saver {
 	fun directory(dir: String): Saver
 	fun subDirectory(subDir: String): Saver
 	fun filename(filename: String): Saver
-	fun extension(imageExt: ImageExt): Saver
+	fun extension(imageExtension: ImageExtension): Saver
 	fun listener(listen: ImageSaver.Listener): Saver
 	fun save(bitmap: Bitmap?, quality: Int = 100)
 	fun save(base64: String?, quality: Int = 100)
@@ -63,8 +63,8 @@ class SaverImpl(
 		return this
 	}
 
-	override fun extension(imageExt: ImageExt): Saver {
-		fileExtension = imageExt.value
+	override fun extension(imageExtension: ImageExtension): Saver {
+		fileExtension = imageExtension.value
 		return this
 	}
 
@@ -147,9 +147,9 @@ class SaverImpl(
 
 	private fun compressBitmap(bitmap: Bitmap, quality: Int, outStream: OutputStream) {
 		when (fileExtension) {
-			ImageExt.PNG.value -> bitmap.compress(Bitmap.CompressFormat.PNG, quality, outStream)
-			ImageExt.JPEG.value -> bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outStream)
-			ImageExt.WEBP.value -> bitmap.compress(Bitmap.CompressFormat.WEBP, quality, outStream)
+			ImageExtension.PNG.value -> bitmap.compress(Bitmap.CompressFormat.PNG, quality, outStream)
+			ImageExtension.JPEG.value -> bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outStream)
+			ImageExtension.WEBP.value -> bitmap.compress(Bitmap.CompressFormat.WEBP, quality, outStream)
 		}
 	}
 
