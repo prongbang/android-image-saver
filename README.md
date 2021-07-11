@@ -20,6 +20,44 @@ dependencies {
 
 ## Usage
 
-```kotlin
+- Save bitmap to file
 
+```kotlin
+ImageSaver.to(this)
+    .directory("android-image-saver")
+    .filename("test")
+    .extension(ImageExtension.PNG)
+    .listener(object : ImageSaver.Listener {
+        override fun onSuccess(file: File) { }
+        override fun onFailure(exception: Exception) { }
+    })
+    .save(bitmap, 80)
+```
+
+- Save drawable to file
+
+```kotlin
+ImageSaver.to(this)
+    .directory("android-image-saver")
+    .filename("test")
+    .extension(ImageExtension.PNG)
+    .listener(object : ImageSaver.Listener {
+        override fun onSuccess(file: File) { }
+        override fun onFailure(exception: Exception) { }
+    })
+    .save(ContextCompat.getDrawable(this, R.mipmap.ic_launcher), 80)
+```
+
+- Save base64 to file
+
+```kotlin
+ImageSaver.to(this)
+    .directory("android-image-saver")
+    .filename("test")
+    .extension(ImageExtension.PNG)
+    .listener(object : ImageSaver.Listener {
+        override fun onSuccess(file: File) { }
+        override fun onFailure(exception: Exception) { }
+    })
+    .save(base64, 80)
 ```
