@@ -20,6 +20,13 @@ dependencies {
 
 ## Usage
 
+- Add in AndroidManifest.xml
+
+```xml
+<application
+    android:requestLegacyExternalStorage="true"/>
+```
+
 - Save bitmap to file
 
 ```kotlin
